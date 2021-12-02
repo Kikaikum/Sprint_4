@@ -45,13 +45,35 @@ function orderAlphabetically(array) {
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
-
+function orderByYear(array) {
+  let result=array.map(function(movies){
+    let obj={};
+    obj["title"]=movies.title;
+    obj["year"]=movies.year;
+    return obj;
+  })
+  .sort(function(a,b){
+    if(a.title < b.title) { return -1; }
+    if(a.title > b.title) { return 1; }
+    return 0;
+  })
+  .sort(function(a,b){
+    return (a.year-b.year);
+  })
+  return result;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
-
+function moviesAverageByCategory(array,genero) {
+  
+  let result=array.map(function(movies){
+    let obj={};    
+    obj["genre"]=movies.genre;
+    obj["score"]=movies.score;
+    return obj;
+  })  
+  result=moviesAverageOfDirector(result,genero);
+  return result;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
